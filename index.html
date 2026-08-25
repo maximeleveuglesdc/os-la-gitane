@@ -37,7 +37,7 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:linear-gradient(160deg,#111111 0%,#0d0d0d 50%,#0f0e0d 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:15px;min-height:100vh;padding-bottom:72px;user-select:none;-webkit-user-select:none;overflow-x:hidden;}
+body{background:linear-gradient(160deg,#111111 0%,#0d0d0d 50%,#0f0e0d 100%);color:var(--text);font-family:"Plus Jakarta Sans",Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;min-height:100vh;padding-bottom:72px;user-select:none;-webkit-user-select:none;overflow-x:hidden;}
 
 /* ==============================
    SÉLECTEUR RÔLE
@@ -550,7 +550,7 @@ nav{padding-bottom:env(safe-area-inset-bottom);}
 @media(max-width:899px){
   .a09-actions{flex-direction:column;}
   #main-app .section{padding-bottom:150px;}
-  #main-app .section{padding-left:2px;padding-right:2px;}
+  #main-app .section{padding-left:12px;padding-right:12px;}
 }
 @media(min-width:900px){
   .card-title{font-size:16px;}
@@ -618,6 +618,124 @@ nav{padding-bottom:env(safe-area-inset-bottom);}
 @media(max-width:699px){#login-heure{font-size:34px!important;}}
 
 .role-cards{margin-top:24px;}
+
+/* ===== PASSE ERGONOMIE SERVICE — lecture instantanée ===== */
+.recipe-card{
+  position:relative;
+  min-height:88px;
+  margin-bottom:10px;
+  padding:15px 16px 15px 13px;
+  gap:13px!important;
+  background:linear-gradient(135deg,#202221 0%,#181a19 100%);
+  border-color:rgba(255,255,255,.12);
+  box-shadow:0 3px 12px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.035);
+}
+.recipe-card::before{
+  content:'';
+  position:absolute;
+  left:-1px;
+  top:13px;
+  bottom:13px;
+  width:3px;
+  border-radius:0 3px 3px 0;
+  background:var(--col-cuisinier);
+  opacity:.85;
+}
+.recipe-card.is-critical::before{background:var(--red);opacity:1;}
+.recipe-ref{
+  width:42px;
+  height:42px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  background:rgba(61,214,172,.11);
+  border:1px solid rgba(61,214,172,.3);
+  color:var(--col-cuisinier);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.02em;
+  font-variant-numeric:tabular-nums;
+}
+.recipe-card.is-critical .recipe-ref{
+  background:rgba(231,76,60,.11);
+  border-color:rgba(231,76,60,.34);
+  color:#ff8d87;
+}
+.recipe-name{
+  color:#fff;
+  font-size:16.5px;
+  font-weight:800;
+  line-height:1.28;
+  letter-spacing:-.012em;
+}
+.recipe-yield{
+  margin-top:4px;
+  color:#C8CECB;
+  font-size:13px;
+  font-weight:500;
+  line-height:1.45;
+}
+.recipe-meta{margin-top:8px;display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+.recipe-dlc{
+  padding:4px 9px;
+  border-radius:6px;
+  font-size:10.5px;
+  font-weight:800;
+  line-height:1.2;
+  letter-spacing:.025em;
+}
+.recipe-critical{
+  color:#ff8d87;
+  font-size:10.5px;
+  font-weight:800;
+  letter-spacing:.025em;
+}
+.recipe-card .chevron{margin-left:2px;border-color:#9BA19E;}
+.recipe-search{
+  min-height:48px;
+  box-sizing:border-box;
+  font-family:inherit;
+  font-size:16px!important;
+  line-height:1.2;
+}
+.recipe-modal-meta{
+  background:#222523!important;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:12px!important;
+  padding:12px 15px!important;
+}
+.recipe-modal-row{min-height:42px;box-sizing:border-box;}
+.recipe-modal-label{font-size:11px!important;color:#AEB5B1!important;}
+.recipe-modal-value{font-size:14px!important;line-height:1.45;}
+.recipe-ingredient{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:16px;
+  padding:11px 0;
+  border-bottom:1px solid rgba(255,255,255,.09);
+}
+.recipe-ingredient-name{font-size:14.5px;color:#E1E5E3;font-weight:600;line-height:1.4;}
+.recipe-ingredient-qty{font-size:15.5px;font-weight:800;flex-shrink:0;text-align:right;}
+#modal-recette .modal-title{font-size:21px;line-height:1.28;padding-right:38px;}
+#modal-recette .modal-section-label{font-size:12px;letter-spacing:.09em;margin-top:20px;padding-bottom:8px;}
+#modal-recette .step-list li{font-size:15px;line-height:1.62;padding:12px 0;gap:12px;}
+#modal-recette .step-list li::before{width:25px;height:25px;font-size:11px;margin-top:0;}
+@media(max-width:420px){
+  .recipe-card{padding:14px 13px 14px 11px;gap:11px!important;}
+  .recipe-ref{width:39px;height:39px;font-size:11.5px;}
+  .recipe-name{font-size:16px;}
+  .recipe-yield{font-size:12.5px;}
+  #modal-recette .modal-title{font-size:19px;}
+}
+@media(min-width:900px){
+  .recipe-card{min-height:94px;padding:17px 18px;}
+  .recipe-name{font-size:17px;}
+  .recipe-yield{font-size:13.5px;}
+  .recipe-ref{width:44px;height:44px;font-size:12.5px;}
+}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1217,7 +1335,7 @@ nav{padding-bottom:env(safe-area-inset-bottom);}
     <div style="position:sticky;top:52px;z-index:90;background:var(--noir);padding:10px 0 6px;">
       <div style="position:relative;">
         <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:14px;pointer-events:none;">&#x1F50D;</span>
-        <input id="search-recettes-cui" type="text" placeholder="Bravas, houmous, keftas, R06…" oninput="filterRecettes(this.value,'cuisinier')"
+        <input id="search-recettes-cui" class="recipe-search" type="text" placeholder="Bravas, houmous, keftas, R06…" oninput="filterRecettes(this.value,'cuisinier')"
           style="width:100%;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:10px 12px 10px 38px;font-size:13px;color:var(--text);outline:none;-webkit-appearance:none;"
           onfocus="this.style.borderColor='var(--col-cuisinier)'" onblur="this.style.borderColor='var(--border)'">
       </div>
@@ -3609,16 +3727,14 @@ function buildRecettesList() {
     const dlcAlert = r.dlcAlert;
     const dlcCol = dlcAlert ? 'var(--red)' : r.dlc.includes('7') || r.dlc.includes('5') ? 'var(--green)' : 'var(--yellow)';
     const dlcBg  = dlcAlert ? 'rgba(231,76,60,.18)' : r.dlc.includes('7') || r.dlc.includes('5') ? 'rgba(46,204,113,.14)' : 'rgba(241,196,15,.14)';
-    return `<div class="plat-btn" onclick="openRecette('${r.id}')" style="gap:14px;">
-      <div style="min-width:36px;text-align:center;">
-        <div style="font-size:10px;font-weight:900;color:${accent};letter-spacing:.04em;">${r.id}</div>
-      </div>
+    return `<div class="plat-btn recipe-card${dlcAlert ? ' is-critical' : ''}" onclick="openRecette('${r.id}')">
+      <div class="recipe-ref">${r.id}</div>
       <div style="flex:1;min-width:0;">
-        <div style="font-size:14px;font-weight:800;color:#FFF;">${r.nom}</div>
-        <div style="font-size:11px;color:#A0A0A0;margin-top:2px;font-weight:500;">${r.rendement}</div>
-        <div style="margin-top:5px;display:flex;align-items:center;gap:6px;">
-          <span style="font-size:9px;font-weight:800;padding:2px 8px;border-radius:4px;background:${dlcBg};color:${dlcCol};letter-spacing:.04em;">${r.dlc}</span>
-          ${dlcAlert ? '<span style="font-size:9px;color:var(--red);font-weight:800;">&#x26A0; CRITIQUE</span>' : ''}
+        <div class="recipe-name">${r.nom}</div>
+        <div class="recipe-yield">${r.rendement}</div>
+        <div class="recipe-meta">
+          <span class="recipe-dlc" style="background:${dlcBg};color:${dlcCol};">${r.dlc}</span>
+          ${dlcAlert ? '<span class="recipe-critical">&#x26A0; CRITIQUE</span>' : ''}
         </div>
       </div>
       <div class="chevron" style="transform:rotate(-135deg);"></div>
@@ -3634,30 +3750,30 @@ function openRecette(id) {
   const dlcColor = r.dlcAlert ? 'var(--red)' : r.dlc.includes('7') ? 'var(--green)' : r.dlc.includes('5') ? 'var(--green)' : 'var(--yellow)';
   const dlcBg   = r.dlcAlert ? 'rgba(231,76,60,.15)' : r.dlc.includes('7') || r.dlc.includes('5') ? 'rgba(46,204,113,.12)' : 'rgba(241,196,15,.12)';
   let h = `
-  <div style="background:var(--surface2);border-radius:10px;padding:12px 14px;margin-bottom:14px;">
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);">
-      <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;">DLC</span>
-      <span style="font-size:13px;font-weight:800;background:${dlcBg};color:${dlcColor};padding:3px 10px;border-radius:5px;">${r.dlc}</span>
+  <div class="recipe-modal-meta" style="margin-bottom:14px;">
+    <div class="recipe-modal-row" style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);">
+      <span class="recipe-modal-label" style="font-weight:700;text-transform:uppercase;letter-spacing:.06em;">DLC</span>
+      <span class="recipe-modal-value" style="font-weight:800;background:${dlcBg};color:${dlcColor};padding:4px 10px;border-radius:5px;">${r.dlc}</span>
     </div>
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;padding:6px 0;border-bottom:1px solid var(--border);gap:12px;">
-      <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;flex-shrink:0;">Conservation</span>
-      <span style="font-size:12px;font-weight:600;color:var(--text-dim);text-align:right;">${r.cons}</span>
+    <div class="recipe-modal-row" style="display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--border);gap:12px;">
+      <span class="recipe-modal-label" style="font-weight:700;text-transform:uppercase;letter-spacing:.06em;flex-shrink:0;">Conservation</span>
+      <span class="recipe-modal-value" style="font-weight:600;color:var(--text-dim);text-align:right;">${r.cons}</span>
     </div>
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);">
-      <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;">Rendement</span>
-      <span style="font-size:13px;font-weight:800;color:var(--text);">${r.rendement}</span>
+    <div class="recipe-modal-row" style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);gap:12px;">
+      <span class="recipe-modal-label" style="font-weight:700;text-transform:uppercase;letter-spacing:.06em;">Rendement</span>
+      <span class="recipe-modal-value" style="font-weight:800;color:var(--text);text-align:right;">${r.rendement}</span>
     </div>
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;">
-      <span style="font-size:11px;font-weight:700;color:#ff7070;text-transform:uppercase;letter-spacing:.06em;">⚠ Allergènes</span>
-      <span style="font-size:12px;font-weight:700;color:#ff9090;text-align:right;">${r.allergenes}</span>
+    <div class="recipe-modal-row" style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;gap:12px;">
+      <span class="recipe-modal-label" style="font-weight:700;color:#ff8580!important;text-transform:uppercase;letter-spacing:.06em;">⚠ Allergènes</span>
+      <span class="recipe-modal-value" style="font-weight:700;color:#ffaaa6;text-align:right;">${r.allergenes}</span>
     </div>
   </div>`;
   if(r.notes) h += `<div style="background:rgba(232,80,10,.07);border-left:3px solid #E8500A;border-radius:0 7px 7px 0;padding:10px 13px;font-size:12px;margin-bottom:14px;line-height:1.6;color:var(--text-dim);">${r.notes}</div>`;
   h += `<div class="modal-section-label" style="margin-top:4px;">&#x1F9EA; Ingr&eacute;dients</div>`;
   h += r.ingredients.map(i => `
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);">
-      <span style="font-size:13px;color:var(--text-sub);font-weight:600;">${i.n}</span>
-      <span style="font-size:14px;font-weight:900;color:${accent};flex-shrink:0;padding-left:12px;">${i.q}</span>
+    <div class="recipe-ingredient">
+      <span class="recipe-ingredient-name">${i.n}</span>
+      <span class="recipe-ingredient-qty" style="color:${accent};">${i.q}</span>
     </div>`).join('');
   h += `<div class="modal-section-label" style="margin-top:14px;">&#x1F373; Préparation</div><ol class="step-list">`;
   h += r.etapes.map(e => `<li>${e}</li>`).join('');
